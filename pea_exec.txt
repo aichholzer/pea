@@ -1,0 +1,9 @@
+0(0) Ejecuta: OP_HTML 
+2(0) Ejecuta: OP_CONST_ATOM <fecha>
+4(1) Ejecuta: OP_CONST_STRING <Y-m-d H:m:s>
+6(2) Ejecuta: OP_LINE  5
+9(2) Ejecuta: OP_CALL <fecha>
+11(1) Ejecuta: OP_LINE  5
+14(1) Ejecuta: OP_ECHO 
+15(0) Ejecuta: OP_CONST_ATOM <salir>
+17(1) Ejecuta: OP_CALL <salir>

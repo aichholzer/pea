@@ -1,0 +1,17 @@
+
+
+if (!case1) goto case2-if
+case1-code:
+goto break
+goto case2-code
+
+case2-if:
+if (!case2) goto case3-if
+case2-code:
+goto break
+goto case3-code
+
+case3-if:
+case3-code:
+break:
+

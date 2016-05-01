@@ -1,0 +1,503 @@
+<html>
+<body>
+<?
+
+escribe fecha("Y-m-d H:i:s");
+
+salir();
+
+$a = "a;b";
+$b = $a->corte(";");
+si ($b->largo == 2 && $b[0] == "a" && $b[1] == "b") {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = "a;b;c";
+$b = $a->corte(";");
+si ($b->largo == 3 && $b[0] == "a" && $b[1] == "b" && $b[2] == "c") {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+
+}
+
+$a = "a;b;c";
+$b = $a->corte(";",1);
+si ($b->largo == 2 && $b[0] == "a" && $b[1] == "b;c") {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = "a<>b";
+$b = $a->corte("<>");
+si ($b->largo == 2 && $b[0] == "a" && $b[1] == "b") {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+salir();
+
+$a = eval("escribe 'Hello world';");
+
+// Test comment
+
+/* 
+*  Test multi line comment
+*/
+
+/* Not working
+$a = 2;
+cambio($a) {
+caso 1:
+	escribe "Test failed\n";
+	break;
+caso 2:
+	escribe "Test passed\n";
+	break;
+caso 3:
+	escribe "Test failed\n";
+	break;
+predet:
+	escribe "Test failed\n";
+	break;
+}
+*/
+
+escribe "Testing more";
+
+$a = "test";
+$b = 33;
+
+escribe $a . $b;
+
+incluir("test2.pea");
+incluir("test2.pea");
+incluir("test2.pea");
+
+// incluir("test9.pea");
+
+$a = $b = $c = 0;
+
+$a = 1 + 2;
+si ($a == 3) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 2 - 1;
+si ($a == 1) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 10 / 2;
+si ($a == 5) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 2 * 4;
+si ($a == 8) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 10 % 2;
+si ($a == 0) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 10 - 5 + 2;
+si ($a == 7) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 10 - (5 + 2);
+si ($a == 3) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 10 + 10 / 2;
+si ($a == 15) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = (10 + 10) / 2;
+si ($a == 10) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 0;
+$a += 10;
+si ($a == 10) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 20;
+$a -= 10;
+si ($a == 10) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 5;
+$a *= 2;
+si ($a == 10) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 20;
+$a /= 2;
+si ($a == 10) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 4;
+$a <<= 2;
+si ($a == 16) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 32;
+$a >>= 2;
+si ($a == 8) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 1;
+si ($a == 1 && $a == 1) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+si ($a == 1 || $a == 0) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+si ($a == 1 && !($a == 0)) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+si (1 > 0) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+si (0 > 1) {
+	escribe "Test failed\n";
+} o {
+	escribe "Test passed\n";
+}
+
+$i = 2;
+$a = 0;
+
+mientras($i) {
+	$a++;
+	$i--;
+}
+si ($a == 2) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 0;
+para($i=0;$i<10;$i++) {
+	$a++;
+}	
+si ($a == 10) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a = 0;
+para($i=0;$i<10;) {
+	$i++;
+	$a++;
+}
+si ($a == 10) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+/*******************
+ * funcion tests
+ ******************
+ */
+$test = "Kalle";
+
+funcion f_test1($arg) {
+	global $test;
+
+	si ($arg == "Hello world") {
+		escribe "Test passedAAAAAAAAAA\n";
+	} o {
+		escribe "Test failed\n";
+	}
+	si ($test == "Kalle") {
+		escribe "Test passedBBBBBBBB\n";
+	} o {
+		escribe "Test failed\n";
+	}
+}
+
+f_test1("Hello world");
+
+funcion f_test2() {
+	escribe "Test passedCCCCCCCCCCCCCCCC\n";
+}
+
+$p_func = f_test2;
+
+$p_func();
+
+funcion f_test3($arg1,$arg2) {
+	si ($arg1 == 1 && $arg2 == 2) {
+		escribe "Test passedDDDDDDDDDDDDDDDDDD\n";
+	} o {
+		escribe "Test failed\n";
+	}
+}
+
+f_test3(1,2);
+
+
+funcion f_test4($arg1,$arg2 = "default") {
+	si ($arg1 == 1) {
+		si ($arg2 == "input" ) {
+			escribe "Test passedEEEEEEEEEEEEEEEEE\n";
+		} o {
+			escribe "Test failed\n";
+		}
+	}
+	si ($arg1 == 2) {
+		si ($arg2 == "default" ) {
+			escribe "Test passedFFFFFFFFFFFFFFFFFF\n";
+		} o {
+			escribe "Test failed\n";
+		}
+	}
+}
+
+f_test4(1,"input");
+f_test4(2);
+// f_test4(1,"input","foo");	// To many arguments error
+// f_test4();	// Missing argument error
+
+funcion f_test5() {
+	devuelve "foo";
+}
+
+$a = f_test5();
+si ($a == "foo") {
+	escribe "Test passedGGGGGGGGGGGGGGG\n";
+} o {
+	escribe "Test failed\n";
+}
+
+funcion foo($p)
+{ 
+  si($p < 10) { escribe $p; foo($p++); }
+}
+foo(5);
+
+$gtest = "foo";
+funcion f_test6() {
+	si ($gtest == "foo") {
+		escribe "Test failed f.6\n";
+	} o {
+		escribe "Test passed f.6\n";
+	}
+}
+
+f_test6();
+
+funcion f_test7(&$a) {
+	$a = 10;
+}
+
+$b = 5;
+f_test7($b);
+si ($b == 10) {
+	escribe "Test passed f.7\n";
+} o {
+	escribe "Test failed f.7\n";
+}
+
+
+/*******************
+ * clase Tests
+ ******************
+ */
+
+clase Foo {
+	
+	funcion test1() {
+		
+		escribe "Test passedHHHHHHHHHHHHHHHHH\n";
+
+		si ($esto->bar == 10) {
+			escribe "Test passedIIIIIIIIIIIIIIIIIIII\n";
+		} o {
+			escribe "Test failed\n";
+		}
+	
+		$esto->bar = 11;
+	}
+
+}
+
+$f = nuevo Foo;
+
+$f->bar = 10;
+
+$f->test1();
+
+si ($f->bar == 11) {
+	escribe "Test passedJJJJJJJJJJJJJJJJJJJJ\n";
+} o {
+	escribe "Test failed\n";
+}
+
+/*******************
+ * Array Tests
+ ******************
+ */
+$a = arreglo(1,2,3);
+
+si ($a[0] == 1 && $a[1] == 2 && $a[2] == 3) {
+	escribe "Test passedKKKKKKKKKKKK\n";
+} o {
+	escribe "Test failed\n";
+}
+
+si ($a->largo == 3 ){
+	escribe "Test passedLLLLLLLLLLLLLLLLL\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$a["test"] = "foo";
+si ($a["test"] == "foo") {
+	escribe "Test passedMMMM\n";
+} o {
+	escribe "Test failed\n";
+}
+si ($a->test == "foo") {
+	escribe "Test passedNNNN\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$i = 1;
+si ($a[$i] == 2) {
+	escribe "Test passedOOOO\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$t[0]["foo"] = "test";
+$i=0;
+si ($t[$i]["foo"] == "test") {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+/*******************
+ * String Tests
+ *******************/
+
+$a = "test";
+si ($a->largo == 4 ){
+	escribe "Test passedLARGOGOGOGOGOGOGOG\n";
+} o {
+	escribe "Test failed\n";
+}
+ 
+$b = $a->subcadena(1,2);
+si ($b == "es"){
+	escribe "Test passedSSSSSSSSSSSSSSSSSSSSSSSSSUUU\n";
+} o {
+	escribe "Test failed\n";
+}
+
+$b = $a->subcadena(-2,2);
+si ($b == "st"){
+	escribe "Test passedSSSSSSSSSSSSSSSSSSSSSSSSSUUU\n";
+} o {
+	escribe "Test failed\n";
+}
+
+/*******************
+ * MySQL Tests
+ *******************/
+
+//salir();
+
+$db = bd_abrir("mysql","servidor=localhost;usuario=admin;clave=master;bd=pea");
+
+$res = bd_consulta($db,"SELECT * FROM amigos");
+
+cadauno($res como $row) {
+	cadauno($row como $key => $value) {
+		escribe ($key." = ".$value."\n");
+	}
+}
+
+bd_consulta($db,"UPDATE iStore SET store_flags = store_flags + 1 WHERE store_id = 4");
+si (bd_afectadas($db) == 1) {
+	escribe "Test passed\n";
+} o {
+	escribe "Test failed\n";
+}
+
+bd_consulta($db,"FOO");
+escribe bd_error($db);
+
+escribe "Testing error reporting";
+cadauno(1 como $s) {
+}
+
+escribe "All tests done!";
+
+?>
+</body>
+</html>

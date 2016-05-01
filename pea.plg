@@ -1,0 +1,63 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: pea - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\sg\LOKALA~1\Temp\RSPE8C9.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /I "." /I "C:\cvs_is\infrasec\sdk\mysql\mysql-4.1.18\include" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\proj\pea\pea_string.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\sg\LOKALA~1\Temp\RSPE8C9.tmp" 
+Creating temporary file "C:\DOCUME~1\sg\LOKALA~1\Temp\RSPE8CA.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib libmysql.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/pea.pdb" /debug /machine:I386 /out:"Debug/pea.exe" /pdbtype:sept /libpath:"C:\cvs_is\infrasec\sdk\mysql\mysql-3.23.53\lib\opt" 
+.\Debug\pea_array.obj
+.\Debug\pea_atom.obj
+.\Debug\pea_class.obj
+.\Debug\pea_exec.obj
+.\Debug\pea_function.obj
+.\Debug\pea_hash.obj
+.\Debug\pea_lex.obj
+.\Debug\pea_main.obj
+.\Debug\pea_map.obj
+.\Debug\pea_mem.obj
+.\Debug\pea_object.obj
+.\Debug\pea_parse.obj
+.\Debug\pea_rtl_cgi.obj
+.\Debug\pea_rtl_db.obj
+.\Debug\pea_rtl_io.obj
+.\Debug\pea_rtl_lang.obj
+.\Debug\pea_rtl_socket.obj
+.\Debug\pea_segment.obj
+.\Debug\pea_stack.obj
+.\Debug\pea_stream.obj
+.\Debug\pea_string.obj
+.\Debug\pea_type.obj
+.\Debug\pea_util.obj
+.\Debug\pea_variable.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\sg\LOKALA~1\Temp\RSPE8CA.tmp"
+<h3>Output Window</h3>
+Compiling...
+pea_string.c
+Linking...
+Creating temporary file "C:\DOCUME~1\sg\LOKALA~1\Temp\RSPE8CB.bat" with contents
+[
+@echo off
+copy debug\pea.exe \pea
+]
+Creating command line "C:\DOCUME~1\sg\LOKALA~1\Temp\RSPE8CB.bat"
+Copy
+        1 fil(er) kopierad(e).
+
+
+
+<h3>Results</h3>
+pea.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

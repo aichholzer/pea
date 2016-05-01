@@ -1,0 +1,28 @@
+
+Language and engine:
+ switch
+ handle parse error better
+ header();
+ pea_print to use pea_stream
+ implement pea_stream_token
+ GET/POST to use pea_stream_token
+ big overhaul of memory managment
+ string escape
+ OP_CALL to undefined function should remove arguments
+
+Runtime:
+ split
+ join
+ explode
+
+
+F.S.A:
+- include (Is not working again)
+ - isset	as existe
+ - empty
+ - uniqid
+ - split	skip for now
+ - explode  as (string::corte)
+ - list		as ($a,$b)
+ - date (fecha) 
+ $_ACTUAL

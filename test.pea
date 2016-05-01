@@ -1,0 +1,454 @@
+<html>
+<body>
+<?
+
+
+funcion foo($p)
+{ 
+  si($p < 10) { escribe $p; foo($p++); }
+}
+foo(5);
+
+
+$gtest = "foo";
+function f_test6() {
+	if ($gtest == "foo") {
+		print "Test failed\n";
+	} else {
+		print "Test passed\n";
+	}
+}
+
+f_test6();
+
+$a = eval("print 'Hello world';");
+
+// Test comment
+
+/* 
+*  Test multi line comment
+*/
+
+/* Not working
+$a = 2;
+switch($a) {
+case 1:
+	print "Test failed\n";
+	break;
+case 2:
+	print "Test passed\n";
+	break;
+case 3:
+	print "Test failed\n";
+	break;
+default:
+	print "Test failed\n";
+	break;
+}
+*/
+
+print "Testing more";
+
+$a = "test";
+$b = 33;
+
+print $a . $b;
+
+include("test2.pea");
+include("test2.pea");
+include("test2.pea");
+
+// include("test9.pea");
+
+$a = $b = $c = 0;
+
+$a = 1 + 2;
+if ($a == 3) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 2 - 1;
+if ($a == 1) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 10 / 2;
+if ($a == 5) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 2 * 4;
+if ($a == 8) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 10 % 2;
+if ($a == 0) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 10 - 5 + 2;
+if ($a == 7) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 10 - (5 + 2);
+if ($a == 3) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 10 + 10 / 2;
+if ($a == 15) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = (10 + 10) / 2;
+if ($a == 10) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 0;
+$a += 10;
+if ($a == 10) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 20;
+$a -= 10;
+if ($a == 10) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 5;
+$a *= 2;
+if ($a == 10) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 20;
+$a /= 2;
+if ($a == 10) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 4;
+$a <<= 2;
+if ($a == 16) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 32;
+$a >>= 2;
+if ($a == 8) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 1;
+if ($a == 1 && $a == 1) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+if ($a == 1 || $a == 0) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+if ($a == 1 && !($a == 0)) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+if (1 > 0) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+if (0 > 1) {
+	print "Test failed\n";
+} else {
+	print "Test passed\n";
+}
+
+$i = 2;
+$a = 0;
+
+while($i) {
+	$a++;
+	$i--;
+}
+if ($a == 2) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 0;
+for($i=0;$i<10;$i++) {
+	$a++;
+}	
+if ($a == 10) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a = 0;
+for($i=0;$i<10;) {
+	$i++;
+	$a++;
+}
+if ($a == 10) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+/*******************
+ * Function tests
+ ******************
+ */
+$test = "Kalle";
+
+function f_test1($arg) {
+	global $test;
+
+	if ($arg == "Hello world") {
+		print "Test passed\n";
+	} else {
+		print "Test failed\n";
+	}
+	if ($test == "Kalle") {
+		print "Test passed\n";
+	} else {
+		print "Test failed\n";
+	}
+}
+
+f_test1("Hello world");
+
+function f_test2() {
+	print "Test passed\n";
+}
+
+$p_func = f_test2;
+
+$p_func();
+
+function f_test3($arg1,$arg2) {
+	if ($arg1 == 1 && $arg2 == 2) {
+		print "Test passed\n";
+	} else {
+		print "Test failed\n";
+	}
+}
+
+f_test3(1,2);
+
+
+function f_test4($arg1,$arg2 = "default") {
+	if ($arg1 == 1) {
+		if ($arg2 == "input" ) {
+			print "Test passed\n";
+		} else {
+			print "Test failed\n";
+		}
+	}
+	if ($arg1 == 2) {
+		if ($arg2 == "default" ) {
+			print "Test passed\n";
+		} else {
+			print "Test failed\n";
+		}
+	}
+}
+
+f_test4(1,"input");
+f_test4(2);
+// f_test4(1,"input","foo");	// To many arguments error
+// f_test4();	// Missing argument error
+
+function f_test5() {
+	return "foo";
+}
+
+$a = f_test5();
+if ($a == "foo") {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+
+/*******************
+ * Class Tests
+ ******************
+ */
+
+class Foo {
+	
+	function test1() {
+		
+		print "Test passed\n";
+
+		if ($this->bar == 10) {
+			print "Test passed\n";
+		} else {
+			print "Test failed\n";
+		}
+	
+		$this->bar = 11;
+	}
+
+}
+
+$f = new Foo;
+
+$f->bar = 10;
+
+$f->test1();
+
+if ($f->bar == 11) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+/*******************
+ * ARRAY Tests
+ ******************
+ */
+$a = array(1,2,3);
+
+if ($a[0] == 1 && $a[1] == 2 && $a[2] == 3) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+if ($a->length == 3 ){
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$a["test"] = "foo";
+if ($a["test"] == "foo") {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+if ($a->test == "foo") {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$i = 1;
+if ($a[$i] == 2) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$t[0]["foo"] = "test";
+$i=0;
+if ($t[$i]["foo"] == "test") {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+/*******************
+ * String Tests
+ *******************/
+
+$a = "test";
+if ($a->length == 4 ){
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+ 
+$b = $a->substr(1,2);
+if ($b == "es"){
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+$b = $a->substr(-2,2);
+if ($b == "st"){
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+/*******************
+ * MySQL Tests
+ *******************/
+
+exit();
+
+$db = db_open("mysql","host=127.0.0.1;user=root;password=aq1sw2;database=portal");
+
+$res = db_query($db,"SELECT * FROM iStore WHERE store_id = 4");
+
+foreach($res as $row) {
+	foreach($row as $key => $value) {
+		print ($key." = ".$value."\n");
+	}
+}
+
+db_query($db,"UPDATE iStore SET store_flags = store_flags + 1 WHERE store_id = 4");
+if (db_affected_rows($db) == 1) {
+	print "Test passed\n";
+} else {
+	print "Test failed\n";
+}
+
+db_query($db,"FOO");
+print db_error($db);
+
+print "Testing error reporting";
+foreach(1 as $s) {
+}
+
+print "All tests done!";
+
+?>
+</body>
+</html>

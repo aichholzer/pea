@@ -1,0 +1,4795 @@
+
+
+Terminals which are not used:
+
+   T_LOGICAL_XOR
+   T_BOOLEAN_OR
+   T_BOOLEAN_AND
+
+
+State 204 contains 2 shift/reduce conflicts.
+State 212 contains 1 shift/reduce conflict.
+
+Grammar
+rule 1    main ->		/* empty */
+rule 2    @1 ->		/* empty */
+rule 3    main -> @1 statement_list
+rule 4    statement_list -> statement
+rule 5    statement_list -> statement_list statement
+rule 6    statement -> T_HTML
+rule 7    statement -> T_INCLUDE '(' expression ')' ';'
+rule 8    statement -> T_ECHO expression ';'
+rule 9    statement -> compound_statement
+rule 10   statement -> expression_statement
+rule 11   statement -> selection_statement
+rule 12   statement -> iteration_statement
+rule 13   statement -> function_statement
+rule 14   statement -> global_statement
+rule 15   statement -> class_statement
+rule 16   statement -> T_BREAK ';'
+rule 17   statement -> T_RETURN optional_expression ';'
+rule 18   compound_statement -> '{' '}'
+rule 19   compound_statement -> '{' statement_list '}'
+rule 20   expression_statement -> ';'
+rule 21   expression_statement -> expression ';'
+rule 22   optional_else ->		/* empty */
+rule 23   optional_else -> T_ELSE statement
+rule 24   @2 ->		/* empty */
+rule 25   @3 ->		/* empty */
+rule 26   selection_statement -> T_IF '(' expression ')' @2 statement @3 optional_else
+rule 27   @4 ->		/* empty */
+rule 28   selection_statement -> T_SWITCH '(' expression ')' '{' @4 case_statements '}'
+rule 29   case_statements ->		/* empty */
+rule 30   case_statements -> case_statement
+rule 31   case_statements -> case_statements case_statement
+rule 32   @5 ->		/* empty */
+rule 33   case_statement -> T_CASE expression ':' @5 statement_list
+rule 34   case_statement -> T_DEFAULT ':' statement_list
+rule 35   @6 ->		/* empty */
+rule 36   @7 ->		/* empty */
+rule 37   iteration_statement -> T_WHILE @6 '(' expression ')' @7 statement
+rule 38   @8 ->		/* empty */
+rule 39   iteration_statement -> T_DO @8 statement T_WHILE '(' expression ')' ';'
+rule 40   @9 ->		/* empty */
+rule 41   @10 ->		/* empty */
+rule 42   @11 ->		/* empty */
+rule 43   iteration_statement -> T_FOR '(' expression_statement @9 expression_statement @10 optional_expression ')' @11 statement
+rule 44   @12 ->		/* empty */
+rule 45   iteration_statement -> T_FOREACH '(' expression T_AS '$' T_ATOM foreach_optional_value ')' @12 statement
+rule 46   foreach_optional_value ->		/* empty */
+rule 47   foreach_optional_value -> T_DPOINT '$' T_ATOM
+rule 48   optional_expression ->		/* empty */
+rule 49   optional_expression -> expression
+rule 50   @13 ->		/* empty */
+rule 51   @14 ->		/* empty */
+rule 52   function_statement -> T_FUNCTION T_ATOM @13 '(' optional_arguments ')' @14 compound_statement
+rule 53   optional_arguments ->		/* empty */
+rule 54   optional_arguments -> argument
+rule 55   optional_arguments -> optional_arguments ',' argument
+rule 56   argument -> optional_ref '$' T_ATOM optional_default_value
+rule 57   optional_ref ->		/* empty */
+rule 58   optional_ref -> '&'
+rule 59   optional_default_value ->		/* empty */
+rule 60   optional_default_value -> '=' primary_expression
+rule 61   global_statement -> T_GLOBAL global_vars ';'
+rule 62   global_vars -> global_var
+rule 63   global_vars -> global_vars global_var
+rule 64   global_var -> '$' T_ATOM
+rule 65   @15 ->		/* empty */
+rule 66   class_statement -> T_CLASS T_ATOM @15 compound_statement
+rule 67   primary_expression -> T_STRING
+rule 68   primary_expression -> T_INT
+rule 69   primary_expression -> T_TRUE
+rule 70   primary_expression -> T_FALSE
+rule 71   primary_expression -> T_ATOM
+rule 72   primary_expression -> '$' optional_global T_ATOM
+rule 73   primary_expression -> '(' expression ')'
+rule 74   optional_global ->		/* empty */
+rule 75   optional_global -> '_'
+rule 76   postfix_expression -> primary_expression
+rule 77   postfix_expression -> postfix_expression '[' expression ']'
+rule 78   postfix_expression -> postfix_expression '(' optional_parameters ')'
+rule 79   postfix_expression -> postfix_expression T_INC
+rule 80   postfix_expression -> postfix_expression T_DEC
+rule 81   postfix_expression -> postfix_expression T_POINT primary_expression
+rule 82   unary_expression -> postfix_expression
+rule 83   unary_expression -> T_INC unary_expression
+rule 84   unary_expression -> T_DEC unary_expression
+rule 85   unary_expression -> '+' unary_expression
+rule 86   unary_expression -> '-' unary_expression
+rule 87   unary_expression -> '!' unary_expression
+rule 88   unary_expression -> '~' unary_expression
+rule 89   unary_expression -> T_NEW T_ATOM
+rule 90   multiplicative_expression -> unary_expression
+rule 91   multiplicative_expression -> multiplicative_expression '*' unary_expression
+rule 92   multiplicative_expression -> multiplicative_expression '/' unary_expression
+rule 93   multiplicative_expression -> multiplicative_expression '%' unary_expression
+rule 94   additive_expression -> multiplicative_expression
+rule 95   additive_expression -> additive_expression '+' multiplicative_expression
+rule 96   additive_expression -> additive_expression '-' multiplicative_expression
+rule 97   additive_expression -> additive_expression '.' multiplicative_expression
+rule 98   shift_expression -> additive_expression
+rule 99   shift_expression -> shift_expression T_SL additive_expression
+rule 100  shift_expression -> shift_expression T_SR additive_expression
+rule 101  relational_expression -> shift_expression
+rule 102  relational_expression -> relational_expression '<' shift_expression
+rule 103  relational_expression -> relational_expression '>' shift_expression
+rule 104  relational_expression -> relational_expression T_LTE shift_expression
+rule 105  relational_expression -> relational_expression T_GTE shift_expression
+rule 106  equality_expression -> relational_expression
+rule 107  equality_expression -> equality_expression T_EQ relational_expression
+rule 108  equality_expression -> equality_expression T_NE relational_expression
+rule 109  and_expression -> equality_expression
+rule 110  and_expression -> and_expression '&' equality_expression
+rule 111  exclusive_or_expression -> and_expression
+rule 112  exclusive_or_expression -> exclusive_or_expression '^' and_expression
+rule 113  inclusive_or_expression -> exclusive_or_expression
+rule 114  inclusive_or_expression -> inclusive_or_expression '|' exclusive_or_expression
+rule 115  logical_and_expression -> inclusive_or_expression
+rule 116  logical_and_expression -> logical_and_expression T_LOGICAL_AND inclusive_or_expression
+rule 117  logical_or_expression -> logical_and_expression
+rule 118  logical_or_expression -> logical_or_expression T_LOGICAL_OR logical_and_expression
+rule 119  conditional_expression -> logical_or_expression
+rule 120  conditional_expression -> logical_or_expression '?' expression ':' assignment_expression
+rule 121  assignment_expression -> conditional_expression
+rule 122  assignment_expression -> logical_or_expression '=' assignment_expression
+rule 123  assignment_expression -> logical_or_expression T_ADD_ASSIGN assignment_expression
+rule 124  assignment_expression -> logical_or_expression T_SUB_ASSIGN assignment_expression
+rule 125  assignment_expression -> logical_or_expression T_MUL_ASSIGN assignment_expression
+rule 126  assignment_expression -> logical_or_expression T_DIV_ASSIGN assignment_expression
+rule 127  assignment_expression -> logical_or_expression T_CONCAT_ASSIGN assignment_expression
+rule 128  assignment_expression -> logical_or_expression T_MOD_ASSIGN assignment_expression
+rule 129  assignment_expression -> logical_or_expression T_AND_ASSIGN assignment_expression
+rule 130  assignment_expression -> logical_or_expression T_OR_ASSIGN assignment_expression
+rule 131  assignment_expression -> logical_or_expression T_XOR_ASSIGN assignment_expression
+rule 132  assignment_expression -> logical_or_expression T_SL_ASSIGN assignment_expression
+rule 133  assignment_expression -> logical_or_expression T_SR_ASSIGN assignment_expression
+rule 134  expression -> assignment_expression
+rule 135  optional_parameters ->		/* empty */
+rule 136  optional_parameters -> expression
+rule 137  optional_parameters -> optional_parameters ',' expression
+
+Terminals, with rules where they appear
+
+$ (-1)
+'!' (33) 87
+'$' (36) 45 47 56 64 72
+'%' (37) 93
+'&' (38) 58 110
+'(' (40) 7 26 28 37 39 43 45 52 73 78
+')' (41) 7 26 28 37 39 43 45 52 73 78
+'*' (42) 91
+'+' (43) 85 95
+',' (44) 55 137
+'-' (45) 86 96
+'.' (46) 97
+'/' (47) 92
+':' (58) 33 34 120
+';' (59) 7 8 16 17 20 21 39 61
+'<' (60) 102
+'=' (61) 60 122
+'>' (62) 103
+'?' (63) 120
+'[' (91) 77
+']' (93) 77
+'^' (94) 112
+'_' (95) 75
+'{' (123) 18 19 28
+'|' (124) 114
+'}' (125) 18 19 28
+'~' (126) 88
+error (256)
+T_HTML (257) 6
+T_INCLUDE (258) 7
+T_IF (259) 26
+T_ELSE (260) 23
+T_SWITCH (261) 28
+T_CASE (262) 33
+T_DEFAULT (263) 34
+T_BREAK (264) 16
+T_WHILE (265) 37 39
+T_DO (266) 39
+T_FOR (267) 43
+T_FUNCTION (268) 52
+T_GLOBAL (269) 61
+T_CLASS (270) 66
+T_FOREACH (271) 45
+T_AS (272) 45
+T_NEW (273) 89
+T_ECHO (274) 8
+T_RETURN (275) 17
+T_ATOM (276) 45 47 52 56 64 66 71 72 89
+T_STRING (277) 67
+T_INT (278) 68
+T_LOGICAL_OR (279) 118
+T_LOGICAL_XOR (280)
+T_LOGICAL_AND (281) 116
+T_ADD_ASSIGN (282) 123
+T_SUB_ASSIGN (283) 124
+T_MUL_ASSIGN (284) 125
+T_DIV_ASSIGN (285) 126
+T_CONCAT_ASSIGN (286) 127
+T_MOD_ASSIGN (287) 128
+T_AND_ASSIGN (288) 129
+T_OR_ASSIGN (289) 130
+T_XOR_ASSIGN (290) 131
+T_BOOLEAN_OR (291)
+T_BOOLEAN_AND (292)
+T_SL (293) 99
+T_SR (294) 100
+T_EQ (295) 107
+T_NE (296) 108
+T_LTE (297) 104
+T_GTE (298) 105
+T_INC (299) 79 83
+T_DEC (300) 80 84
+T_POINT (301) 81
+T_DPOINT (302) 47
+T_TRUE (303) 69
+T_FALSE (304) 70
+T_SL_ASSIGN (305) 132
+T_SR_ASSIGN (306) 133
+
+Nonterminals, with rules where they appear
+
+main (79)
+    on left: 1 3
+@1 (80)
+    on left: 2, on right: 3
+statement_list (81)
+    on left: 4 5, on right: 3 5 19 33 34
+statement (82)
+    on left: 6 7 8 9 10 11 12 13 14 15 16 17, on right: 4 5 23 26 37
+    39 43 45
+compound_statement (83)
+    on left: 18 19, on right: 9 52 66
+expression_statement (84)
+    on left: 20 21, on right: 10 43
+optional_else (85)
+    on left: 22 23, on right: 26
+selection_statement (86)
+    on left: 26 28, on right: 11
+@2 (87)
+    on left: 24, on right: 26
+@3 (88)
+    on left: 25, on right: 26
+@4 (89)
+    on left: 27, on right: 28
+case_statements (90)
+    on left: 29 30 31, on right: 28 31
+case_statement (91)
+    on left: 33 34, on right: 30 31
+@5 (92)
+    on left: 32, on right: 33
+iteration_statement (93)
+    on left: 37 39 43 45, on right: 12
+@6 (94)
+    on left: 35, on right: 37
+@7 (95)
+    on left: 36, on right: 37
+@8 (96)
+    on left: 38, on right: 39
+@9 (97)
+    on left: 40, on right: 43
+@10 (98)
+    on left: 41, on right: 43
+@11 (99)
+    on left: 42, on right: 43
+@12 (100)
+    on left: 44, on right: 45
+foreach_optional_value (101)
+    on left: 46 47, on right: 45
+optional_expression (102)
+    on left: 48 49, on right: 17 43
+function_statement (103)
+    on left: 52, on right: 13
+@13 (104)
+    on left: 50, on right: 52
+@14 (105)
+    on left: 51, on right: 52
+optional_arguments (106)
+    on left: 53 54 55, on right: 52 55
+argument (107)
+    on left: 56, on right: 54 55
+optional_ref (108)
+    on left: 57 58, on right: 56
+optional_default_value (109)
+    on left: 59 60, on right: 56
+global_statement (110)
+    on left: 61, on right: 14
+global_vars (111)
+    on left: 62 63, on right: 61 63
+global_var (112)
+    on left: 64, on right: 62 63
+class_statement (113)
+    on left: 66, on right: 15
+@15 (114)
+    on left: 65, on right: 66
+primary_expression (115)
+    on left: 67 68 69 70 71 72 73, on right: 60 76 81
+optional_global (116)
+    on left: 74 75, on right: 72
+postfix_expression (117)
+    on left: 76 77 78 79 80 81, on right: 77 78 79 80 81 82
+unary_expression (118)
+    on left: 82 83 84 85 86 87 88 89, on right: 83 84 85 86 87 88 90
+    91 92 93
+multiplicative_expression (119)
+    on left: 90 91 92 93, on right: 91 92 93 94 95 96 97
+additive_expression (120)
+    on left: 94 95 96 97, on right: 95 96 97 98 99 100
+shift_expression (121)
+    on left: 98 99 100, on right: 99 100 101 102 103 104 105
+relational_expression (122)
+    on left: 101 102 103 104 105, on right: 102 103 104 105 106 107
+    108
+equality_expression (123)
+    on left: 106 107 108, on right: 107 108 109 110
+and_expression (124)
+    on left: 109 110, on right: 110 111 112
+exclusive_or_expression (125)
+    on left: 111 112, on right: 112 113 114
+inclusive_or_expression (126)
+    on left: 113 114, on right: 114 115 116
+logical_and_expression (127)
+    on left: 115 116, on right: 116 117 118
+logical_or_expression (128)
+    on left: 117 118, on right: 118 119 120 122 123 124 125 126 127
+    128 129 130 131 132 133
+conditional_expression (129)
+    on left: 119 120, on right: 121
+assignment_expression (130)
+    on left: 121 122 123 124 125 126 127 128 129 130 131 132 133,
+    on right: 120 122 123 124 125 126 127 128 129 130 131 132 133 134
+expression (131)
+    on left: 134, on right: 7 8 21 26 28 33 37 39 45 49 73 77 120 136
+    137
+optional_parameters (132)
+    on left: 135 136 137, on right: 78 137
+
+
+state 0
+
+    $   	reduce using rule 1 (main)
+    $default	reduce using rule 2 (@1)
+
+    main	go to state 249
+    @1  	go to state 1
+
+
+
+state 1
+
+    main  ->  @1 . statement_list   (rule 3)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement_list	go to state 32
+    statement	go to state 33
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 2
+
+    statement  ->  T_HTML .   (rule 6)
+
+    $default	reduce using rule 6 (statement)
+
+
+
+state 3
+
+    statement  ->  T_INCLUDE . '(' expression ')' ';'   (rule 7)
+
+    '(' 	shift, and go to state 57
+
+
+
+state 4
+
+    selection_statement  ->  T_IF . '(' expression ')' @2 statement @3 optional_else   (rule 26)
+
+    '(' 	shift, and go to state 58
+
+
+
+state 5
+
+    selection_statement  ->  T_SWITCH . '(' expression ')' '{' @4 case_statements '}'   (rule 28)
+
+    '(' 	shift, and go to state 59
+
+
+
+state 6
+
+    statement  ->  T_BREAK . ';'   (rule 16)
+
+    ';' 	shift, and go to state 60
+
+
+
+state 7
+
+    iteration_statement  ->  T_WHILE . @6 '(' expression ')' @7 statement   (rule 37)
+
+    $default	reduce using rule 35 (@6)
+
+    @6  	go to state 61
+
+
+
+state 8
+
+    iteration_statement  ->  T_DO . @8 statement T_WHILE '(' expression ')' ';'   (rule 39)
+
+    $default	reduce using rule 38 (@8)
+
+    @8  	go to state 62
+
+
+
+state 9
+
+    iteration_statement  ->  T_FOR . '(' expression_statement @9 expression_statement @10 optional_expression ')' @11 statement   (rule 43)
+
+    '(' 	shift, and go to state 63
+
+
+
+state 10
+
+    function_statement  ->  T_FUNCTION . T_ATOM @13 '(' optional_arguments ')' @14 compound_statement   (rule 52)
+
+    T_ATOM	shift, and go to state 64
+
+
+
+state 11
+
+    global_statement  ->  T_GLOBAL . global_vars ';'   (rule 61)
+
+    '$' 	shift, and go to state 65
+
+    global_vars	go to state 66
+    global_var	go to state 67
+
+
+
+state 12
+
+    class_statement  ->  T_CLASS . T_ATOM @15 compound_statement   (rule 66)
+
+    T_ATOM	shift, and go to state 68
+
+
+
+state 13
+
+    iteration_statement  ->  T_FOREACH . '(' expression T_AS '$' T_ATOM foreach_optional_value ')' @12 statement   (rule 45)
+
+    '(' 	shift, and go to state 69
+
+
+
+state 14
+
+    unary_expression  ->  T_NEW . T_ATOM   (rule 89)
+
+    T_ATOM	shift, and go to state 70
+
+
+
+state 15
+
+    statement  ->  T_ECHO . expression ';'   (rule 8)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 71
+
+
+
+state 16
+
+    statement  ->  T_RETURN . optional_expression ';'   (rule 17)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    $default	reduce using rule 48 (optional_expression)
+
+    optional_expression	go to state 72
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 73
+
+
+
+state 17
+
+    primary_expression  ->  T_ATOM .   (rule 71)
+
+    $default	reduce using rule 71 (primary_expression)
+
+
+
+state 18
+
+    primary_expression  ->  T_STRING .   (rule 67)
+
+    $default	reduce using rule 67 (primary_expression)
+
+
+
+state 19
+
+    primary_expression  ->  T_INT .   (rule 68)
+
+    $default	reduce using rule 68 (primary_expression)
+
+
+
+state 20
+
+    unary_expression  ->  T_INC . unary_expression   (rule 83)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 74
+
+
+
+state 21
+
+    unary_expression  ->  T_DEC . unary_expression   (rule 84)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 75
+
+
+
+state 22
+
+    primary_expression  ->  T_TRUE .   (rule 69)
+
+    $default	reduce using rule 69 (primary_expression)
+
+
+
+state 23
+
+    primary_expression  ->  T_FALSE .   (rule 70)
+
+    $default	reduce using rule 70 (primary_expression)
+
+
+
+state 24
+
+    unary_expression  ->  '+' . unary_expression   (rule 85)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 76
+
+
+
+state 25
+
+    unary_expression  ->  '-' . unary_expression   (rule 86)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 77
+
+
+
+state 26
+
+    unary_expression  ->  '!' . unary_expression   (rule 87)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 78
+
+
+
+state 27
+
+    unary_expression  ->  '~' . unary_expression   (rule 88)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 79
+
+
+
+state 28
+
+    primary_expression  ->  '(' . expression ')'   (rule 73)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 80
+
+
+
+state 29
+
+    expression_statement  ->  ';' .   (rule 20)
+
+    $default	reduce using rule 20 (expression_statement)
+
+
+
+state 30
+
+    compound_statement  ->  '{' . '}'   (rule 18)
+    compound_statement  ->  '{' . statement_list '}'   (rule 19)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '}' 	shift, and go to state 81
+    '$' 	shift, and go to state 31
+
+    statement_list	go to state 82
+    statement	go to state 33
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 31
+
+    primary_expression  ->  '$' . optional_global T_ATOM   (rule 72)
+
+    '_' 	shift, and go to state 83
+
+    $default	reduce using rule 74 (optional_global)
+
+    optional_global	go to state 84
+
+
+
+state 32
+
+    main  ->  @1 statement_list .   (rule 3)
+    statement_list  ->  statement_list . statement   (rule 5)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    $default	reduce using rule 3 (main)
+
+    statement	go to state 85
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 33
+
+    statement_list  ->  statement .   (rule 4)
+
+    $default	reduce using rule 4 (statement_list)
+
+
+
+state 34
+
+    statement  ->  compound_statement .   (rule 9)
+
+    $default	reduce using rule 9 (statement)
+
+
+
+state 35
+
+    statement  ->  expression_statement .   (rule 10)
+
+    $default	reduce using rule 10 (statement)
+
+
+
+state 36
+
+    statement  ->  selection_statement .   (rule 11)
+
+    $default	reduce using rule 11 (statement)
+
+
+
+state 37
+
+    statement  ->  iteration_statement .   (rule 12)
+
+    $default	reduce using rule 12 (statement)
+
+
+
+state 38
+
+    statement  ->  function_statement .   (rule 13)
+
+    $default	reduce using rule 13 (statement)
+
+
+
+state 39
+
+    statement  ->  global_statement .   (rule 14)
+
+    $default	reduce using rule 14 (statement)
+
+
+
+state 40
+
+    statement  ->  class_statement .   (rule 15)
+
+    $default	reduce using rule 15 (statement)
+
+
+
+state 41
+
+    postfix_expression  ->  primary_expression .   (rule 76)
+
+    $default	reduce using rule 76 (postfix_expression)
+
+
+
+state 42
+
+    postfix_expression  ->  postfix_expression . '[' expression ']'   (rule 77)
+    postfix_expression  ->  postfix_expression . '(' optional_parameters ')'   (rule 78)
+    postfix_expression  ->  postfix_expression . T_INC   (rule 79)
+    postfix_expression  ->  postfix_expression . T_DEC   (rule 80)
+    postfix_expression  ->  postfix_expression . T_POINT primary_expression   (rule 81)
+    unary_expression  ->  postfix_expression .   (rule 82)
+
+    T_INC	shift, and go to state 86
+    T_DEC	shift, and go to state 87
+    T_POINT	shift, and go to state 88
+    '[' 	shift, and go to state 89
+    '(' 	shift, and go to state 90
+
+    $default	reduce using rule 82 (unary_expression)
+
+
+
+state 43
+
+    multiplicative_expression  ->  unary_expression .   (rule 90)
+
+    $default	reduce using rule 90 (multiplicative_expression)
+
+
+
+state 44
+
+    multiplicative_expression  ->  multiplicative_expression . '*' unary_expression   (rule 91)
+    multiplicative_expression  ->  multiplicative_expression . '/' unary_expression   (rule 92)
+    multiplicative_expression  ->  multiplicative_expression . '%' unary_expression   (rule 93)
+    additive_expression  ->  multiplicative_expression .   (rule 94)
+
+    '*' 	shift, and go to state 91
+    '/' 	shift, and go to state 92
+    '%' 	shift, and go to state 93
+
+    $default	reduce using rule 94 (additive_expression)
+
+
+
+state 45
+
+    additive_expression  ->  additive_expression . '+' multiplicative_expression   (rule 95)
+    additive_expression  ->  additive_expression . '-' multiplicative_expression   (rule 96)
+    additive_expression  ->  additive_expression . '.' multiplicative_expression   (rule 97)
+    shift_expression  ->  additive_expression .   (rule 98)
+
+    '+' 	shift, and go to state 94
+    '-' 	shift, and go to state 95
+    '.' 	shift, and go to state 96
+
+    $default	reduce using rule 98 (shift_expression)
+
+
+
+state 46
+
+    shift_expression  ->  shift_expression . T_SL additive_expression   (rule 99)
+    shift_expression  ->  shift_expression . T_SR additive_expression   (rule 100)
+    relational_expression  ->  shift_expression .   (rule 101)
+
+    T_SL	shift, and go to state 97
+    T_SR	shift, and go to state 98
+
+    $default	reduce using rule 101 (relational_expression)
+
+
+
+state 47
+
+    relational_expression  ->  relational_expression . '<' shift_expression   (rule 102)
+    relational_expression  ->  relational_expression . '>' shift_expression   (rule 103)
+    relational_expression  ->  relational_expression . T_LTE shift_expression   (rule 104)
+    relational_expression  ->  relational_expression . T_GTE shift_expression   (rule 105)
+    equality_expression  ->  relational_expression .   (rule 106)
+
+    T_LTE	shift, and go to state 99
+    T_GTE	shift, and go to state 100
+    '<' 	shift, and go to state 101
+    '>' 	shift, and go to state 102
+
+    $default	reduce using rule 106 (equality_expression)
+
+
+
+state 48
+
+    equality_expression  ->  equality_expression . T_EQ relational_expression   (rule 107)
+    equality_expression  ->  equality_expression . T_NE relational_expression   (rule 108)
+    and_expression  ->  equality_expression .   (rule 109)
+
+    T_EQ	shift, and go to state 103
+    T_NE	shift, and go to state 104
+
+    $default	reduce using rule 109 (and_expression)
+
+
+
+state 49
+
+    and_expression  ->  and_expression . '&' equality_expression   (rule 110)
+    exclusive_or_expression  ->  and_expression .   (rule 111)
+
+    '&' 	shift, and go to state 105
+
+    $default	reduce using rule 111 (exclusive_or_expression)
+
+
+
+state 50
+
+    exclusive_or_expression  ->  exclusive_or_expression . '^' and_expression   (rule 112)
+    inclusive_or_expression  ->  exclusive_or_expression .   (rule 113)
+
+    '^' 	shift, and go to state 106
+
+    $default	reduce using rule 113 (inclusive_or_expression)
+
+
+
+state 51
+
+    inclusive_or_expression  ->  inclusive_or_expression . '|' exclusive_or_expression   (rule 114)
+    logical_and_expression  ->  inclusive_or_expression .   (rule 115)
+
+    '|' 	shift, and go to state 107
+
+    $default	reduce using rule 115 (logical_and_expression)
+
+
+
+state 52
+
+    logical_and_expression  ->  logical_and_expression . T_LOGICAL_AND inclusive_or_expression   (rule 116)
+    logical_or_expression  ->  logical_and_expression .   (rule 117)
+
+    T_LOGICAL_AND	shift, and go to state 108
+
+    $default	reduce using rule 117 (logical_or_expression)
+
+
+
+state 53
+
+    logical_or_expression  ->  logical_or_expression . T_LOGICAL_OR logical_and_expression   (rule 118)
+    conditional_expression  ->  logical_or_expression .   (rule 119)
+    conditional_expression  ->  logical_or_expression . '?' expression ':' assignment_expression   (rule 120)
+    assignment_expression  ->  logical_or_expression . '=' assignment_expression   (rule 122)
+    assignment_expression  ->  logical_or_expression . T_ADD_ASSIGN assignment_expression   (rule 123)
+    assignment_expression  ->  logical_or_expression . T_SUB_ASSIGN assignment_expression   (rule 124)
+    assignment_expression  ->  logical_or_expression . T_MUL_ASSIGN assignment_expression   (rule 125)
+    assignment_expression  ->  logical_or_expression . T_DIV_ASSIGN assignment_expression   (rule 126)
+    assignment_expression  ->  logical_or_expression . T_CONCAT_ASSIGN assignment_expression   (rule 127)
+    assignment_expression  ->  logical_or_expression . T_MOD_ASSIGN assignment_expression   (rule 128)
+    assignment_expression  ->  logical_or_expression . T_AND_ASSIGN assignment_expression   (rule 129)
+    assignment_expression  ->  logical_or_expression . T_OR_ASSIGN assignment_expression   (rule 130)
+    assignment_expression  ->  logical_or_expression . T_XOR_ASSIGN assignment_expression   (rule 131)
+    assignment_expression  ->  logical_or_expression . T_SL_ASSIGN assignment_expression   (rule 132)
+    assignment_expression  ->  logical_or_expression . T_SR_ASSIGN assignment_expression   (rule 133)
+
+    T_LOGICAL_OR	shift, and go to state 109
+    T_ADD_ASSIGN	shift, and go to state 110
+    T_SUB_ASSIGN	shift, and go to state 111
+    T_MUL_ASSIGN	shift, and go to state 112
+    T_DIV_ASSIGN	shift, and go to state 113
+    T_CONCAT_ASSIGN	shift, and go to state 114
+    T_MOD_ASSIGN	shift, and go to state 115
+    T_AND_ASSIGN	shift, and go to state 116
+    T_OR_ASSIGN	shift, and go to state 117
+    T_XOR_ASSIGN	shift, and go to state 118
+    '=' 	shift, and go to state 119
+    T_SL_ASSIGN	shift, and go to state 120
+    T_SR_ASSIGN	shift, and go to state 121
+    '?' 	shift, and go to state 122
+
+    $default	reduce using rule 119 (conditional_expression)
+
+
+
+state 54
+
+    assignment_expression  ->  conditional_expression .   (rule 121)
+
+    $default	reduce using rule 121 (assignment_expression)
+
+
+
+state 55
+
+    expression  ->  assignment_expression .   (rule 134)
+
+    $default	reduce using rule 134 (expression)
+
+
+
+state 56
+
+    expression_statement  ->  expression . ';'   (rule 21)
+
+    ';' 	shift, and go to state 123
+
+
+
+state 57
+
+    statement  ->  T_INCLUDE '(' . expression ')' ';'   (rule 7)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 124
+
+
+
+state 58
+
+    selection_statement  ->  T_IF '(' . expression ')' @2 statement @3 optional_else   (rule 26)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 125
+
+
+
+state 59
+
+    selection_statement  ->  T_SWITCH '(' . expression ')' '{' @4 case_statements '}'   (rule 28)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 126
+
+
+
+state 60
+
+    statement  ->  T_BREAK ';' .   (rule 16)
+
+    $default	reduce using rule 16 (statement)
+
+
+
+state 61
+
+    iteration_statement  ->  T_WHILE @6 . '(' expression ')' @7 statement   (rule 37)
+
+    '(' 	shift, and go to state 127
+
+
+
+state 62
+
+    iteration_statement  ->  T_DO @8 . statement T_WHILE '(' expression ')' ';'   (rule 39)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement	go to state 128
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 63
+
+    iteration_statement  ->  T_FOR '(' . expression_statement @9 expression_statement @10 optional_expression ')' @11 statement   (rule 43)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '$' 	shift, and go to state 31
+
+    expression_statement	go to state 129
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 64
+
+    function_statement  ->  T_FUNCTION T_ATOM . @13 '(' optional_arguments ')' @14 compound_statement   (rule 52)
+
+    $default	reduce using rule 50 (@13)
+
+    @13 	go to state 130
+
+
+
+state 65
+
+    global_var  ->  '$' . T_ATOM   (rule 64)
+
+    T_ATOM	shift, and go to state 131
+
+
+
+state 66
+
+    global_statement  ->  T_GLOBAL global_vars . ';'   (rule 61)
+    global_vars  ->  global_vars . global_var   (rule 63)
+
+    ';' 	shift, and go to state 132
+    '$' 	shift, and go to state 65
+
+    global_var	go to state 133
+
+
+
+state 67
+
+    global_vars  ->  global_var .   (rule 62)
+
+    $default	reduce using rule 62 (global_vars)
+
+
+
+state 68
+
+    class_statement  ->  T_CLASS T_ATOM . @15 compound_statement   (rule 66)
+
+    $default	reduce using rule 65 (@15)
+
+    @15 	go to state 134
+
+
+
+state 69
+
+    iteration_statement  ->  T_FOREACH '(' . expression T_AS '$' T_ATOM foreach_optional_value ')' @12 statement   (rule 45)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 135
+
+
+
+state 70
+
+    unary_expression  ->  T_NEW T_ATOM .   (rule 89)
+
+    $default	reduce using rule 89 (unary_expression)
+
+
+
+state 71
+
+    statement  ->  T_ECHO expression . ';'   (rule 8)
+
+    ';' 	shift, and go to state 136
+
+
+
+state 72
+
+    statement  ->  T_RETURN optional_expression . ';'   (rule 17)
+
+    ';' 	shift, and go to state 137
+
+
+
+state 73
+
+    optional_expression  ->  expression .   (rule 49)
+
+    $default	reduce using rule 49 (optional_expression)
+
+
+
+state 74
+
+    unary_expression  ->  T_INC unary_expression .   (rule 83)
+
+    $default	reduce using rule 83 (unary_expression)
+
+
+
+state 75
+
+    unary_expression  ->  T_DEC unary_expression .   (rule 84)
+
+    $default	reduce using rule 84 (unary_expression)
+
+
+
+state 76
+
+    unary_expression  ->  '+' unary_expression .   (rule 85)
+
+    $default	reduce using rule 85 (unary_expression)
+
+
+
+state 77
+
+    unary_expression  ->  '-' unary_expression .   (rule 86)
+
+    $default	reduce using rule 86 (unary_expression)
+
+
+
+state 78
+
+    unary_expression  ->  '!' unary_expression .   (rule 87)
+
+    $default	reduce using rule 87 (unary_expression)
+
+
+
+state 79
+
+    unary_expression  ->  '~' unary_expression .   (rule 88)
+
+    $default	reduce using rule 88 (unary_expression)
+
+
+
+state 80
+
+    primary_expression  ->  '(' expression . ')'   (rule 73)
+
+    ')' 	shift, and go to state 138
+
+
+
+state 81
+
+    compound_statement  ->  '{' '}' .   (rule 18)
+
+    $default	reduce using rule 18 (compound_statement)
+
+
+
+state 82
+
+    statement_list  ->  statement_list . statement   (rule 5)
+    compound_statement  ->  '{' statement_list . '}'   (rule 19)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '}' 	shift, and go to state 139
+    '$' 	shift, and go to state 31
+
+    statement	go to state 85
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 83
+
+    optional_global  ->  '_' .   (rule 75)
+
+    $default	reduce using rule 75 (optional_global)
+
+
+
+state 84
+
+    primary_expression  ->  '$' optional_global . T_ATOM   (rule 72)
+
+    T_ATOM	shift, and go to state 140
+
+
+
+state 85
+
+    statement_list  ->  statement_list statement .   (rule 5)
+
+    $default	reduce using rule 5 (statement_list)
+
+
+
+state 86
+
+    postfix_expression  ->  postfix_expression T_INC .   (rule 79)
+
+    $default	reduce using rule 79 (postfix_expression)
+
+
+
+state 87
+
+    postfix_expression  ->  postfix_expression T_DEC .   (rule 80)
+
+    $default	reduce using rule 80 (postfix_expression)
+
+
+
+state 88
+
+    postfix_expression  ->  postfix_expression T_POINT . primary_expression   (rule 81)
+
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 141
+
+
+
+state 89
+
+    postfix_expression  ->  postfix_expression '[' . expression ']'   (rule 77)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 142
+
+
+
+state 90
+
+    postfix_expression  ->  postfix_expression '(' . optional_parameters ')'   (rule 78)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    $default	reduce using rule 135 (optional_parameters)
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 143
+    optional_parameters	go to state 144
+
+
+
+state 91
+
+    multiplicative_expression  ->  multiplicative_expression '*' . unary_expression   (rule 91)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 145
+
+
+
+state 92
+
+    multiplicative_expression  ->  multiplicative_expression '/' . unary_expression   (rule 92)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 146
+
+
+
+state 93
+
+    multiplicative_expression  ->  multiplicative_expression '%' . unary_expression   (rule 93)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 147
+
+
+
+state 94
+
+    additive_expression  ->  additive_expression '+' . multiplicative_expression   (rule 95)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 148
+
+
+
+state 95
+
+    additive_expression  ->  additive_expression '-' . multiplicative_expression   (rule 96)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 149
+
+
+
+state 96
+
+    additive_expression  ->  additive_expression '.' . multiplicative_expression   (rule 97)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 150
+
+
+
+state 97
+
+    shift_expression  ->  shift_expression T_SL . additive_expression   (rule 99)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 151
+
+
+
+state 98
+
+    shift_expression  ->  shift_expression T_SR . additive_expression   (rule 100)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 152
+
+
+
+state 99
+
+    relational_expression  ->  relational_expression T_LTE . shift_expression   (rule 104)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 153
+
+
+
+state 100
+
+    relational_expression  ->  relational_expression T_GTE . shift_expression   (rule 105)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 154
+
+
+
+state 101
+
+    relational_expression  ->  relational_expression '<' . shift_expression   (rule 102)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 155
+
+
+
+state 102
+
+    relational_expression  ->  relational_expression '>' . shift_expression   (rule 103)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 156
+
+
+
+state 103
+
+    equality_expression  ->  equality_expression T_EQ . relational_expression   (rule 107)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 157
+
+
+
+state 104
+
+    equality_expression  ->  equality_expression T_NE . relational_expression   (rule 108)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 158
+
+
+
+state 105
+
+    and_expression  ->  and_expression '&' . equality_expression   (rule 110)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 159
+
+
+
+state 106
+
+    exclusive_or_expression  ->  exclusive_or_expression '^' . and_expression   (rule 112)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 160
+
+
+
+state 107
+
+    inclusive_or_expression  ->  inclusive_or_expression '|' . exclusive_or_expression   (rule 114)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 161
+
+
+
+state 108
+
+    logical_and_expression  ->  logical_and_expression T_LOGICAL_AND . inclusive_or_expression   (rule 116)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 162
+
+
+
+state 109
+
+    logical_or_expression  ->  logical_or_expression T_LOGICAL_OR . logical_and_expression   (rule 118)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 163
+
+
+
+state 110
+
+    assignment_expression  ->  logical_or_expression T_ADD_ASSIGN . assignment_expression   (rule 123)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 164
+
+
+
+state 111
+
+    assignment_expression  ->  logical_or_expression T_SUB_ASSIGN . assignment_expression   (rule 124)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 165
+
+
+
+state 112
+
+    assignment_expression  ->  logical_or_expression T_MUL_ASSIGN . assignment_expression   (rule 125)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 166
+
+
+
+state 113
+
+    assignment_expression  ->  logical_or_expression T_DIV_ASSIGN . assignment_expression   (rule 126)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 167
+
+
+
+state 114
+
+    assignment_expression  ->  logical_or_expression T_CONCAT_ASSIGN . assignment_expression   (rule 127)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 168
+
+
+
+state 115
+
+    assignment_expression  ->  logical_or_expression T_MOD_ASSIGN . assignment_expression   (rule 128)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 169
+
+
+
+state 116
+
+    assignment_expression  ->  logical_or_expression T_AND_ASSIGN . assignment_expression   (rule 129)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 170
+
+
+
+state 117
+
+    assignment_expression  ->  logical_or_expression T_OR_ASSIGN . assignment_expression   (rule 130)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 171
+
+
+
+state 118
+
+    assignment_expression  ->  logical_or_expression T_XOR_ASSIGN . assignment_expression   (rule 131)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 172
+
+
+
+state 119
+
+    assignment_expression  ->  logical_or_expression '=' . assignment_expression   (rule 122)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 173
+
+
+
+state 120
+
+    assignment_expression  ->  logical_or_expression T_SL_ASSIGN . assignment_expression   (rule 132)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 174
+
+
+
+state 121
+
+    assignment_expression  ->  logical_or_expression T_SR_ASSIGN . assignment_expression   (rule 133)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 175
+
+
+
+state 122
+
+    conditional_expression  ->  logical_or_expression '?' . expression ':' assignment_expression   (rule 120)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 176
+
+
+
+state 123
+
+    expression_statement  ->  expression ';' .   (rule 21)
+
+    $default	reduce using rule 21 (expression_statement)
+
+
+
+state 124
+
+    statement  ->  T_INCLUDE '(' expression . ')' ';'   (rule 7)
+
+    ')' 	shift, and go to state 177
+
+
+
+state 125
+
+    selection_statement  ->  T_IF '(' expression . ')' @2 statement @3 optional_else   (rule 26)
+
+    ')' 	shift, and go to state 178
+
+
+
+state 126
+
+    selection_statement  ->  T_SWITCH '(' expression . ')' '{' @4 case_statements '}'   (rule 28)
+
+    ')' 	shift, and go to state 179
+
+
+
+state 127
+
+    iteration_statement  ->  T_WHILE @6 '(' . expression ')' @7 statement   (rule 37)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 180
+
+
+
+state 128
+
+    iteration_statement  ->  T_DO @8 statement . T_WHILE '(' expression ')' ';'   (rule 39)
+
+    T_WHILE	shift, and go to state 181
+
+
+
+state 129
+
+    iteration_statement  ->  T_FOR '(' expression_statement . @9 expression_statement @10 optional_expression ')' @11 statement   (rule 43)
+
+    $default	reduce using rule 40 (@9)
+
+    @9  	go to state 182
+
+
+
+state 130
+
+    function_statement  ->  T_FUNCTION T_ATOM @13 . '(' optional_arguments ')' @14 compound_statement   (rule 52)
+
+    '(' 	shift, and go to state 183
+
+
+
+state 131
+
+    global_var  ->  '$' T_ATOM .   (rule 64)
+
+    $default	reduce using rule 64 (global_var)
+
+
+
+state 132
+
+    global_statement  ->  T_GLOBAL global_vars ';' .   (rule 61)
+
+    $default	reduce using rule 61 (global_statement)
+
+
+
+state 133
+
+    global_vars  ->  global_vars global_var .   (rule 63)
+
+    $default	reduce using rule 63 (global_vars)
+
+
+
+state 134
+
+    class_statement  ->  T_CLASS T_ATOM @15 . compound_statement   (rule 66)
+
+    '{' 	shift, and go to state 30
+
+    compound_statement	go to state 184
+
+
+
+state 135
+
+    iteration_statement  ->  T_FOREACH '(' expression . T_AS '$' T_ATOM foreach_optional_value ')' @12 statement   (rule 45)
+
+    T_AS	shift, and go to state 185
+
+
+
+state 136
+
+    statement  ->  T_ECHO expression ';' .   (rule 8)
+
+    $default	reduce using rule 8 (statement)
+
+
+
+state 137
+
+    statement  ->  T_RETURN optional_expression ';' .   (rule 17)
+
+    $default	reduce using rule 17 (statement)
+
+
+
+state 138
+
+    primary_expression  ->  '(' expression ')' .   (rule 73)
+
+    $default	reduce using rule 73 (primary_expression)
+
+
+
+state 139
+
+    compound_statement  ->  '{' statement_list '}' .   (rule 19)
+
+    $default	reduce using rule 19 (compound_statement)
+
+
+
+state 140
+
+    primary_expression  ->  '$' optional_global T_ATOM .   (rule 72)
+
+    $default	reduce using rule 72 (primary_expression)
+
+
+
+state 141
+
+    postfix_expression  ->  postfix_expression T_POINT primary_expression .   (rule 81)
+
+    $default	reduce using rule 81 (postfix_expression)
+
+
+
+state 142
+
+    postfix_expression  ->  postfix_expression '[' expression . ']'   (rule 77)
+
+    ']' 	shift, and go to state 186
+
+
+
+state 143
+
+    optional_parameters  ->  expression .   (rule 136)
+
+    $default	reduce using rule 136 (optional_parameters)
+
+
+
+state 144
+
+    postfix_expression  ->  postfix_expression '(' optional_parameters . ')'   (rule 78)
+    optional_parameters  ->  optional_parameters . ',' expression   (rule 137)
+
+    ')' 	shift, and go to state 187
+    ',' 	shift, and go to state 188
+
+
+
+state 145
+
+    multiplicative_expression  ->  multiplicative_expression '*' unary_expression .   (rule 91)
+
+    $default	reduce using rule 91 (multiplicative_expression)
+
+
+
+state 146
+
+    multiplicative_expression  ->  multiplicative_expression '/' unary_expression .   (rule 92)
+
+    $default	reduce using rule 92 (multiplicative_expression)
+
+
+
+state 147
+
+    multiplicative_expression  ->  multiplicative_expression '%' unary_expression .   (rule 93)
+
+    $default	reduce using rule 93 (multiplicative_expression)
+
+
+
+state 148
+
+    multiplicative_expression  ->  multiplicative_expression . '*' unary_expression   (rule 91)
+    multiplicative_expression  ->  multiplicative_expression . '/' unary_expression   (rule 92)
+    multiplicative_expression  ->  multiplicative_expression . '%' unary_expression   (rule 93)
+    additive_expression  ->  additive_expression '+' multiplicative_expression .   (rule 95)
+
+    '*' 	shift, and go to state 91
+    '/' 	shift, and go to state 92
+    '%' 	shift, and go to state 93
+
+    $default	reduce using rule 95 (additive_expression)
+
+
+
+state 149
+
+    multiplicative_expression  ->  multiplicative_expression . '*' unary_expression   (rule 91)
+    multiplicative_expression  ->  multiplicative_expression . '/' unary_expression   (rule 92)
+    multiplicative_expression  ->  multiplicative_expression . '%' unary_expression   (rule 93)
+    additive_expression  ->  additive_expression '-' multiplicative_expression .   (rule 96)
+
+    '*' 	shift, and go to state 91
+    '/' 	shift, and go to state 92
+    '%' 	shift, and go to state 93
+
+    $default	reduce using rule 96 (additive_expression)
+
+
+
+state 150
+
+    multiplicative_expression  ->  multiplicative_expression . '*' unary_expression   (rule 91)
+    multiplicative_expression  ->  multiplicative_expression . '/' unary_expression   (rule 92)
+    multiplicative_expression  ->  multiplicative_expression . '%' unary_expression   (rule 93)
+    additive_expression  ->  additive_expression '.' multiplicative_expression .   (rule 97)
+
+    '*' 	shift, and go to state 91
+    '/' 	shift, and go to state 92
+    '%' 	shift, and go to state 93
+
+    $default	reduce using rule 97 (additive_expression)
+
+
+
+state 151
+
+    additive_expression  ->  additive_expression . '+' multiplicative_expression   (rule 95)
+    additive_expression  ->  additive_expression . '-' multiplicative_expression   (rule 96)
+    additive_expression  ->  additive_expression . '.' multiplicative_expression   (rule 97)
+    shift_expression  ->  shift_expression T_SL additive_expression .   (rule 99)
+
+    '+' 	shift, and go to state 94
+    '-' 	shift, and go to state 95
+    '.' 	shift, and go to state 96
+
+    $default	reduce using rule 99 (shift_expression)
+
+
+
+state 152
+
+    additive_expression  ->  additive_expression . '+' multiplicative_expression   (rule 95)
+    additive_expression  ->  additive_expression . '-' multiplicative_expression   (rule 96)
+    additive_expression  ->  additive_expression . '.' multiplicative_expression   (rule 97)
+    shift_expression  ->  shift_expression T_SR additive_expression .   (rule 100)
+
+    '+' 	shift, and go to state 94
+    '-' 	shift, and go to state 95
+    '.' 	shift, and go to state 96
+
+    $default	reduce using rule 100 (shift_expression)
+
+
+
+state 153
+
+    shift_expression  ->  shift_expression . T_SL additive_expression   (rule 99)
+    shift_expression  ->  shift_expression . T_SR additive_expression   (rule 100)
+    relational_expression  ->  relational_expression T_LTE shift_expression .   (rule 104)
+
+    T_SL	shift, and go to state 97
+    T_SR	shift, and go to state 98
+
+    $default	reduce using rule 104 (relational_expression)
+
+
+
+state 154
+
+    shift_expression  ->  shift_expression . T_SL additive_expression   (rule 99)
+    shift_expression  ->  shift_expression . T_SR additive_expression   (rule 100)
+    relational_expression  ->  relational_expression T_GTE shift_expression .   (rule 105)
+
+    T_SL	shift, and go to state 97
+    T_SR	shift, and go to state 98
+
+    $default	reduce using rule 105 (relational_expression)
+
+
+
+state 155
+
+    shift_expression  ->  shift_expression . T_SL additive_expression   (rule 99)
+    shift_expression  ->  shift_expression . T_SR additive_expression   (rule 100)
+    relational_expression  ->  relational_expression '<' shift_expression .   (rule 102)
+
+    T_SL	shift, and go to state 97
+    T_SR	shift, and go to state 98
+
+    $default	reduce using rule 102 (relational_expression)
+
+
+
+state 156
+
+    shift_expression  ->  shift_expression . T_SL additive_expression   (rule 99)
+    shift_expression  ->  shift_expression . T_SR additive_expression   (rule 100)
+    relational_expression  ->  relational_expression '>' shift_expression .   (rule 103)
+
+    T_SL	shift, and go to state 97
+    T_SR	shift, and go to state 98
+
+    $default	reduce using rule 103 (relational_expression)
+
+
+
+state 157
+
+    relational_expression  ->  relational_expression . '<' shift_expression   (rule 102)
+    relational_expression  ->  relational_expression . '>' shift_expression   (rule 103)
+    relational_expression  ->  relational_expression . T_LTE shift_expression   (rule 104)
+    relational_expression  ->  relational_expression . T_GTE shift_expression   (rule 105)
+    equality_expression  ->  equality_expression T_EQ relational_expression .   (rule 107)
+
+    T_LTE	shift, and go to state 99
+    T_GTE	shift, and go to state 100
+    '<' 	shift, and go to state 101
+    '>' 	shift, and go to state 102
+
+    $default	reduce using rule 107 (equality_expression)
+
+
+
+state 158
+
+    relational_expression  ->  relational_expression . '<' shift_expression   (rule 102)
+    relational_expression  ->  relational_expression . '>' shift_expression   (rule 103)
+    relational_expression  ->  relational_expression . T_LTE shift_expression   (rule 104)
+    relational_expression  ->  relational_expression . T_GTE shift_expression   (rule 105)
+    equality_expression  ->  equality_expression T_NE relational_expression .   (rule 108)
+
+    T_LTE	shift, and go to state 99
+    T_GTE	shift, and go to state 100
+    '<' 	shift, and go to state 101
+    '>' 	shift, and go to state 102
+
+    $default	reduce using rule 108 (equality_expression)
+
+
+
+state 159
+
+    equality_expression  ->  equality_expression . T_EQ relational_expression   (rule 107)
+    equality_expression  ->  equality_expression . T_NE relational_expression   (rule 108)
+    and_expression  ->  and_expression '&' equality_expression .   (rule 110)
+
+    T_EQ	shift, and go to state 103
+    T_NE	shift, and go to state 104
+
+    $default	reduce using rule 110 (and_expression)
+
+
+
+state 160
+
+    and_expression  ->  and_expression . '&' equality_expression   (rule 110)
+    exclusive_or_expression  ->  exclusive_or_expression '^' and_expression .   (rule 112)
+
+    '&' 	shift, and go to state 105
+
+    $default	reduce using rule 112 (exclusive_or_expression)
+
+
+
+state 161
+
+    exclusive_or_expression  ->  exclusive_or_expression . '^' and_expression   (rule 112)
+    inclusive_or_expression  ->  inclusive_or_expression '|' exclusive_or_expression .   (rule 114)
+
+    '^' 	shift, and go to state 106
+
+    $default	reduce using rule 114 (inclusive_or_expression)
+
+
+
+state 162
+
+    inclusive_or_expression  ->  inclusive_or_expression . '|' exclusive_or_expression   (rule 114)
+    logical_and_expression  ->  logical_and_expression T_LOGICAL_AND inclusive_or_expression .   (rule 116)
+
+    '|' 	shift, and go to state 107
+
+    $default	reduce using rule 116 (logical_and_expression)
+
+
+
+state 163
+
+    logical_and_expression  ->  logical_and_expression . T_LOGICAL_AND inclusive_or_expression   (rule 116)
+    logical_or_expression  ->  logical_or_expression T_LOGICAL_OR logical_and_expression .   (rule 118)
+
+    T_LOGICAL_AND	shift, and go to state 108
+
+    $default	reduce using rule 118 (logical_or_expression)
+
+
+
+state 164
+
+    assignment_expression  ->  logical_or_expression T_ADD_ASSIGN assignment_expression .   (rule 123)
+
+    $default	reduce using rule 123 (assignment_expression)
+
+
+
+state 165
+
+    assignment_expression  ->  logical_or_expression T_SUB_ASSIGN assignment_expression .   (rule 124)
+
+    $default	reduce using rule 124 (assignment_expression)
+
+
+
+state 166
+
+    assignment_expression  ->  logical_or_expression T_MUL_ASSIGN assignment_expression .   (rule 125)
+
+    $default	reduce using rule 125 (assignment_expression)
+
+
+
+state 167
+
+    assignment_expression  ->  logical_or_expression T_DIV_ASSIGN assignment_expression .   (rule 126)
+
+    $default	reduce using rule 126 (assignment_expression)
+
+
+
+state 168
+
+    assignment_expression  ->  logical_or_expression T_CONCAT_ASSIGN assignment_expression .   (rule 127)
+
+    $default	reduce using rule 127 (assignment_expression)
+
+
+
+state 169
+
+    assignment_expression  ->  logical_or_expression T_MOD_ASSIGN assignment_expression .   (rule 128)
+
+    $default	reduce using rule 128 (assignment_expression)
+
+
+
+state 170
+
+    assignment_expression  ->  logical_or_expression T_AND_ASSIGN assignment_expression .   (rule 129)
+
+    $default	reduce using rule 129 (assignment_expression)
+
+
+
+state 171
+
+    assignment_expression  ->  logical_or_expression T_OR_ASSIGN assignment_expression .   (rule 130)
+
+    $default	reduce using rule 130 (assignment_expression)
+
+
+
+state 172
+
+    assignment_expression  ->  logical_or_expression T_XOR_ASSIGN assignment_expression .   (rule 131)
+
+    $default	reduce using rule 131 (assignment_expression)
+
+
+
+state 173
+
+    assignment_expression  ->  logical_or_expression '=' assignment_expression .   (rule 122)
+
+    $default	reduce using rule 122 (assignment_expression)
+
+
+
+state 174
+
+    assignment_expression  ->  logical_or_expression T_SL_ASSIGN assignment_expression .   (rule 132)
+
+    $default	reduce using rule 132 (assignment_expression)
+
+
+
+state 175
+
+    assignment_expression  ->  logical_or_expression T_SR_ASSIGN assignment_expression .   (rule 133)
+
+    $default	reduce using rule 133 (assignment_expression)
+
+
+
+state 176
+
+    conditional_expression  ->  logical_or_expression '?' expression . ':' assignment_expression   (rule 120)
+
+    ':' 	shift, and go to state 189
+
+
+
+state 177
+
+    statement  ->  T_INCLUDE '(' expression ')' . ';'   (rule 7)
+
+    ';' 	shift, and go to state 190
+
+
+
+state 178
+
+    selection_statement  ->  T_IF '(' expression ')' . @2 statement @3 optional_else   (rule 26)
+
+    $default	reduce using rule 24 (@2)
+
+    @2  	go to state 191
+
+
+
+state 179
+
+    selection_statement  ->  T_SWITCH '(' expression ')' . '{' @4 case_statements '}'   (rule 28)
+
+    '{' 	shift, and go to state 192
+
+
+
+state 180
+
+    iteration_statement  ->  T_WHILE @6 '(' expression . ')' @7 statement   (rule 37)
+
+    ')' 	shift, and go to state 193
+
+
+
+state 181
+
+    iteration_statement  ->  T_DO @8 statement T_WHILE . '(' expression ')' ';'   (rule 39)
+
+    '(' 	shift, and go to state 194
+
+
+
+state 182
+
+    iteration_statement  ->  T_FOR '(' expression_statement @9 . expression_statement @10 optional_expression ')' @11 statement   (rule 43)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '$' 	shift, and go to state 31
+
+    expression_statement	go to state 195
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 183
+
+    function_statement  ->  T_FUNCTION T_ATOM @13 '(' . optional_arguments ')' @14 compound_statement   (rule 52)
+
+    '&' 	shift, and go to state 196
+
+    '$' 	reduce using rule 57 (optional_ref)
+    $default	reduce using rule 53 (optional_arguments)
+
+    optional_arguments	go to state 197
+    argument	go to state 198
+    optional_ref	go to state 199
+
+
+
+state 184
+
+    class_statement  ->  T_CLASS T_ATOM @15 compound_statement .   (rule 66)
+
+    $default	reduce using rule 66 (class_statement)
+
+
+
+state 185
+
+    iteration_statement  ->  T_FOREACH '(' expression T_AS . '$' T_ATOM foreach_optional_value ')' @12 statement   (rule 45)
+
+    '$' 	shift, and go to state 200
+
+
+
+state 186
+
+    postfix_expression  ->  postfix_expression '[' expression ']' .   (rule 77)
+
+    $default	reduce using rule 77 (postfix_expression)
+
+
+
+state 187
+
+    postfix_expression  ->  postfix_expression '(' optional_parameters ')' .   (rule 78)
+
+    $default	reduce using rule 78 (postfix_expression)
+
+
+
+state 188
+
+    optional_parameters  ->  optional_parameters ',' . expression   (rule 137)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 201
+
+
+
+state 189
+
+    conditional_expression  ->  logical_or_expression '?' expression ':' . assignment_expression   (rule 120)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 202
+
+
+
+state 190
+
+    statement  ->  T_INCLUDE '(' expression ')' ';' .   (rule 7)
+
+    $default	reduce using rule 7 (statement)
+
+
+
+state 191
+
+    selection_statement  ->  T_IF '(' expression ')' @2 . statement @3 optional_else   (rule 26)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement	go to state 203
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 192
+
+    selection_statement  ->  T_SWITCH '(' expression ')' '{' . @4 case_statements '}'   (rule 28)
+
+    $default	reduce using rule 27 (@4)
+
+    @4  	go to state 204
+
+
+
+state 193
+
+    iteration_statement  ->  T_WHILE @6 '(' expression ')' . @7 statement   (rule 37)
+
+    $default	reduce using rule 36 (@7)
+
+    @7  	go to state 205
+
+
+
+state 194
+
+    iteration_statement  ->  T_DO @8 statement T_WHILE '(' . expression ')' ';'   (rule 39)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 206
+
+
+
+state 195
+
+    iteration_statement  ->  T_FOR '(' expression_statement @9 expression_statement . @10 optional_expression ')' @11 statement   (rule 43)
+
+    $default	reduce using rule 41 (@10)
+
+    @10 	go to state 207
+
+
+
+state 196
+
+    optional_ref  ->  '&' .   (rule 58)
+
+    $default	reduce using rule 58 (optional_ref)
+
+
+
+state 197
+
+    function_statement  ->  T_FUNCTION T_ATOM @13 '(' optional_arguments . ')' @14 compound_statement   (rule 52)
+    optional_arguments  ->  optional_arguments . ',' argument   (rule 55)
+
+    ')' 	shift, and go to state 208
+    ',' 	shift, and go to state 209
+
+
+
+state 198
+
+    optional_arguments  ->  argument .   (rule 54)
+
+    $default	reduce using rule 54 (optional_arguments)
+
+
+
+state 199
+
+    argument  ->  optional_ref . '$' T_ATOM optional_default_value   (rule 56)
+
+    '$' 	shift, and go to state 210
+
+
+
+state 200
+
+    iteration_statement  ->  T_FOREACH '(' expression T_AS '$' . T_ATOM foreach_optional_value ')' @12 statement   (rule 45)
+
+    T_ATOM	shift, and go to state 211
+
+
+
+state 201
+
+    optional_parameters  ->  optional_parameters ',' expression .   (rule 137)
+
+    $default	reduce using rule 137 (optional_parameters)
+
+
+
+state 202
+
+    conditional_expression  ->  logical_or_expression '?' expression ':' assignment_expression .   (rule 120)
+
+    $default	reduce using rule 120 (conditional_expression)
+
+
+
+state 203
+
+    selection_statement  ->  T_IF '(' expression ')' @2 statement . @3 optional_else   (rule 26)
+
+    $default	reduce using rule 25 (@3)
+
+    @3  	go to state 212
+
+
+
+state 204
+
+    selection_statement  ->  T_SWITCH '(' expression ')' '{' @4 . case_statements '}'   (rule 28)
+
+    T_CASE	shift, and go to state 213
+    T_DEFAULT	shift, and go to state 214
+
+    T_CASE	[reduce using rule 29 (case_statements)]
+    T_DEFAULT	[reduce using rule 29 (case_statements)]
+    $default	reduce using rule 29 (case_statements)
+
+    case_statements	go to state 215
+    case_statement	go to state 216
+
+
+
+state 205
+
+    iteration_statement  ->  T_WHILE @6 '(' expression ')' @7 . statement   (rule 37)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement	go to state 217
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 206
+
+    iteration_statement  ->  T_DO @8 statement T_WHILE '(' expression . ')' ';'   (rule 39)
+
+    ')' 	shift, and go to state 218
+
+
+
+state 207
+
+    iteration_statement  ->  T_FOR '(' expression_statement @9 expression_statement @10 . optional_expression ')' @11 statement   (rule 43)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    $default	reduce using rule 48 (optional_expression)
+
+    optional_expression	go to state 219
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 73
+
+
+
+state 208
+
+    function_statement  ->  T_FUNCTION T_ATOM @13 '(' optional_arguments ')' . @14 compound_statement   (rule 52)
+
+    $default	reduce using rule 51 (@14)
+
+    @14 	go to state 220
+
+
+
+state 209
+
+    optional_arguments  ->  optional_arguments ',' . argument   (rule 55)
+
+    '&' 	shift, and go to state 196
+
+    $default	reduce using rule 57 (optional_ref)
+
+    argument	go to state 221
+    optional_ref	go to state 199
+
+
+
+state 210
+
+    argument  ->  optional_ref '$' . T_ATOM optional_default_value   (rule 56)
+
+    T_ATOM	shift, and go to state 222
+
+
+
+state 211
+
+    iteration_statement  ->  T_FOREACH '(' expression T_AS '$' T_ATOM . foreach_optional_value ')' @12 statement   (rule 45)
+
+    T_DPOINT	shift, and go to state 223
+
+    $default	reduce using rule 46 (foreach_optional_value)
+
+    foreach_optional_value	go to state 224
+
+
+
+state 212
+
+    selection_statement  ->  T_IF '(' expression ')' @2 statement @3 . optional_else   (rule 26)
+
+    T_ELSE	shift, and go to state 225
+
+    T_ELSE	[reduce using rule 22 (optional_else)]
+    $default	reduce using rule 22 (optional_else)
+
+    optional_else	go to state 226
+
+
+
+state 213
+
+    case_statement  ->  T_CASE . expression ':' @5 statement_list   (rule 33)
+
+    T_NEW	shift, and go to state 14
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 227
+
+
+
+state 214
+
+    case_statement  ->  T_DEFAULT . ':' statement_list   (rule 34)
+
+    ':' 	shift, and go to state 228
+
+
+
+state 215
+
+    selection_statement  ->  T_SWITCH '(' expression ')' '{' @4 case_statements . '}'   (rule 28)
+    case_statements  ->  case_statements . case_statement   (rule 31)
+
+    T_CASE	shift, and go to state 213
+    T_DEFAULT	shift, and go to state 214
+    '}' 	shift, and go to state 229
+
+    case_statement	go to state 230
+
+
+
+state 216
+
+    case_statements  ->  case_statement .   (rule 30)
+
+    $default	reduce using rule 30 (case_statements)
+
+
+
+state 217
+
+    iteration_statement  ->  T_WHILE @6 '(' expression ')' @7 statement .   (rule 37)
+
+    $default	reduce using rule 37 (iteration_statement)
+
+
+
+state 218
+
+    iteration_statement  ->  T_DO @8 statement T_WHILE '(' expression ')' . ';'   (rule 39)
+
+    ';' 	shift, and go to state 231
+
+
+
+state 219
+
+    iteration_statement  ->  T_FOR '(' expression_statement @9 expression_statement @10 optional_expression . ')' @11 statement   (rule 43)
+
+    ')' 	shift, and go to state 232
+
+
+
+state 220
+
+    function_statement  ->  T_FUNCTION T_ATOM @13 '(' optional_arguments ')' @14 . compound_statement   (rule 52)
+
+    '{' 	shift, and go to state 30
+
+    compound_statement	go to state 233
+
+
+
+state 221
+
+    optional_arguments  ->  optional_arguments ',' argument .   (rule 55)
+
+    $default	reduce using rule 55 (optional_arguments)
+
+
+
+state 222
+
+    argument  ->  optional_ref '$' T_ATOM . optional_default_value   (rule 56)
+
+    '=' 	shift, and go to state 234
+
+    $default	reduce using rule 59 (optional_default_value)
+
+    optional_default_value	go to state 235
+
+
+
+state 223
+
+    foreach_optional_value  ->  T_DPOINT . '$' T_ATOM   (rule 47)
+
+    '$' 	shift, and go to state 236
+
+
+
+state 224
+
+    iteration_statement  ->  T_FOREACH '(' expression T_AS '$' T_ATOM foreach_optional_value . ')' @12 statement   (rule 45)
+
+    ')' 	shift, and go to state 237
+
+
+
+state 225
+
+    optional_else  ->  T_ELSE . statement   (rule 23)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement	go to state 238
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 226
+
+    selection_statement  ->  T_IF '(' expression ')' @2 statement @3 optional_else .   (rule 26)
+
+    $default	reduce using rule 26 (selection_statement)
+
+
+
+state 227
+
+    case_statement  ->  T_CASE expression . ':' @5 statement_list   (rule 33)
+
+    ':' 	shift, and go to state 239
+
+
+
+state 228
+
+    case_statement  ->  T_DEFAULT ':' . statement_list   (rule 34)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement_list	go to state 240
+    statement	go to state 33
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 229
+
+    selection_statement  ->  T_SWITCH '(' expression ')' '{' @4 case_statements '}' .   (rule 28)
+
+    $default	reduce using rule 28 (selection_statement)
+
+
+
+state 230
+
+    case_statements  ->  case_statements case_statement .   (rule 31)
+
+    $default	reduce using rule 31 (case_statements)
+
+
+
+state 231
+
+    iteration_statement  ->  T_DO @8 statement T_WHILE '(' expression ')' ';' .   (rule 39)
+
+    $default	reduce using rule 39 (iteration_statement)
+
+
+
+state 232
+
+    iteration_statement  ->  T_FOR '(' expression_statement @9 expression_statement @10 optional_expression ')' . @11 statement   (rule 43)
+
+    $default	reduce using rule 42 (@11)
+
+    @11 	go to state 241
+
+
+
+state 233
+
+    function_statement  ->  T_FUNCTION T_ATOM @13 '(' optional_arguments ')' @14 compound_statement .   (rule 52)
+
+    $default	reduce using rule 52 (function_statement)
+
+
+
+state 234
+
+    optional_default_value  ->  '=' . primary_expression   (rule 60)
+
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '(' 	shift, and go to state 28
+    '$' 	shift, and go to state 31
+
+    primary_expression	go to state 242
+
+
+
+state 235
+
+    argument  ->  optional_ref '$' T_ATOM optional_default_value .   (rule 56)
+
+    $default	reduce using rule 56 (argument)
+
+
+
+state 236
+
+    foreach_optional_value  ->  T_DPOINT '$' . T_ATOM   (rule 47)
+
+    T_ATOM	shift, and go to state 243
+
+
+
+state 237
+
+    iteration_statement  ->  T_FOREACH '(' expression T_AS '$' T_ATOM foreach_optional_value ')' . @12 statement   (rule 45)
+
+    $default	reduce using rule 44 (@12)
+
+    @12 	go to state 244
+
+
+
+state 238
+
+    optional_else  ->  T_ELSE statement .   (rule 23)
+
+    $default	reduce using rule 23 (optional_else)
+
+
+
+state 239
+
+    case_statement  ->  T_CASE expression ':' . @5 statement_list   (rule 33)
+
+    $default	reduce using rule 32 (@5)
+
+    @5  	go to state 245
+
+
+
+state 240
+
+    statement_list  ->  statement_list . statement   (rule 5)
+    case_statement  ->  T_DEFAULT ':' statement_list .   (rule 34)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    $default	reduce using rule 34 (case_statement)
+
+    statement	go to state 85
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 241
+
+    iteration_statement  ->  T_FOR '(' expression_statement @9 expression_statement @10 optional_expression ')' @11 . statement   (rule 43)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement	go to state 246
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 242
+
+    optional_default_value  ->  '=' primary_expression .   (rule 60)
+
+    $default	reduce using rule 60 (optional_default_value)
+
+
+
+state 243
+
+    foreach_optional_value  ->  T_DPOINT '$' T_ATOM .   (rule 47)
+
+    $default	reduce using rule 47 (foreach_optional_value)
+
+
+
+state 244
+
+    iteration_statement  ->  T_FOREACH '(' expression T_AS '$' T_ATOM foreach_optional_value ')' @12 . statement   (rule 45)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement	go to state 247
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 245
+
+    case_statement  ->  T_CASE expression ':' @5 . statement_list   (rule 33)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    statement_list	go to state 248
+    statement	go to state 33
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 246
+
+    iteration_statement  ->  T_FOR '(' expression_statement @9 expression_statement @10 optional_expression ')' @11 statement .   (rule 43)
+
+    $default	reduce using rule 43 (iteration_statement)
+
+
+
+state 247
+
+    iteration_statement  ->  T_FOREACH '(' expression T_AS '$' T_ATOM foreach_optional_value ')' @12 statement .   (rule 45)
+
+    $default	reduce using rule 45 (iteration_statement)
+
+
+
+state 248
+
+    statement_list  ->  statement_list . statement   (rule 5)
+    case_statement  ->  T_CASE expression ':' @5 statement_list .   (rule 33)
+
+    T_HTML	shift, and go to state 2
+    T_INCLUDE	shift, and go to state 3
+    T_IF	shift, and go to state 4
+    T_SWITCH	shift, and go to state 5
+    T_BREAK	shift, and go to state 6
+    T_WHILE	shift, and go to state 7
+    T_DO	shift, and go to state 8
+    T_FOR	shift, and go to state 9
+    T_FUNCTION	shift, and go to state 10
+    T_GLOBAL	shift, and go to state 11
+    T_CLASS	shift, and go to state 12
+    T_FOREACH	shift, and go to state 13
+    T_NEW	shift, and go to state 14
+    T_ECHO	shift, and go to state 15
+    T_RETURN	shift, and go to state 16
+    T_ATOM	shift, and go to state 17
+    T_STRING	shift, and go to state 18
+    T_INT	shift, and go to state 19
+    T_INC	shift, and go to state 20
+    T_DEC	shift, and go to state 21
+    T_TRUE	shift, and go to state 22
+    T_FALSE	shift, and go to state 23
+    '+' 	shift, and go to state 24
+    '-' 	shift, and go to state 25
+    '!' 	shift, and go to state 26
+    '~' 	shift, and go to state 27
+    '(' 	shift, and go to state 28
+    ';' 	shift, and go to state 29
+    '{' 	shift, and go to state 30
+    '$' 	shift, and go to state 31
+
+    $default	reduce using rule 33 (case_statement)
+
+    statement	go to state 85
+    compound_statement	go to state 34
+    expression_statement	go to state 35
+    selection_statement	go to state 36
+    iteration_statement	go to state 37
+    function_statement	go to state 38
+    global_statement	go to state 39
+    class_statement	go to state 40
+    primary_expression	go to state 41
+    postfix_expression	go to state 42
+    unary_expression	go to state 43
+    multiplicative_expression	go to state 44
+    additive_expression	go to state 45
+    shift_expression	go to state 46
+    relational_expression	go to state 47
+    equality_expression	go to state 48
+    and_expression	go to state 49
+    exclusive_or_expression	go to state 50
+    inclusive_or_expression	go to state 51
+    logical_and_expression	go to state 52
+    logical_or_expression	go to state 53
+    conditional_expression	go to state 54
+    assignment_expression	go to state 55
+    expression	go to state 56
+
+
+
+state 249
+
+    $   	go to state 250
+
+
+
+state 250
+
+    $   	go to state 251
+
+
+
+state 251
+
+    $default	accept

@@ -1,0 +1,37 @@
+<html>
+<body>
+<?
+
+//
+// array = array(a,b,c,...);
+// list = list(a,b,c,..);
+// map = map( );
+// object = object( atom: valaue , ...)
+//
+
+$l = list();
+
+if ($l.lenght == 0) {
+	echo "Test passed\n";
+} else {
+	echo "Test failed\n";
+}
+
+$l[0] = "test";
+if ($l.lenght == 1) {
+	echo "Test passed\n";
+} else {
+	echo "Test failed\n";
+}
+
+$l = list(1,2,3);
+if ($l.lenght == 3 && $l[0] = 1 && $l[1] == 2 && $l[2] == 3) {
+	echo "Test passed\n";
+} else {
+	echo "Test failed\n";
+}
+
+
+
+
+?>
